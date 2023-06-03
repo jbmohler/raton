@@ -1,0 +1,36 @@
+services:
+  haproxy:
+    image: haproxy:2.7
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - ./dev/haproxy:/usr/local/etc/haproxy:ro
+  raton-api:
+    build:
+      context: .
+      dockerfile: dev/Dockerfile.web-debug
+    environment:
+      - PYTHONUNBUFFERED=1
+    secrets:
+      - raton-config.json
+    volumes:
+      - ./cache:/cache
+      - ./cache/psql:/root/psql
+  swagger:
+    image: swaggerapi/swagger-ui
+    environment:
+      - SWAGGER_JSON=
+      - SWAGGER_JSON_URL=/api/docs/swagger.json
+  db:
+    image: postgres:14.8
+    environment:
+      - POSTGRES_PASSWORD=abc123
+
+secrets:
+  raton-config.json:
+    file: dev/secrets/raton-config.json
+

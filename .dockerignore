@@ -1,0 +1,4 @@
+dev
+venv
+cache
+docker-compose.*

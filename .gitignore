@@ -1,0 +1,6 @@
+venv
+cache
+
+# these are required in some fashioned but not versioned
+dev/secrets
+req-wheels

@@ -15,4 +15,6 @@ curl --fail http://localhost/api/info
 # docker compose down
 printf '\n*** TESTS COMPLETE ***\n'
 
+docker compose logs raton-api
+
 ./dev/server.sh down_server

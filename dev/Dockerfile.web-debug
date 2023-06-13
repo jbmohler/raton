@@ -10,11 +10,12 @@ RUN python -m pip install --upgrade pip
 WORKDIR /build
 COPY req-wheels /build/wheels/
 COPY requirements.txt /build/raton/
-COPY setup.py /build/raton/
-COPY raton /build/raton/raton/
 
 WORKDIR /build/raton
 RUN pip install -r requirements.txt --no-index --find-links=/build/wheels
+
+COPY setup.py /build/raton/
+COPY raton /build/raton/raton/
 RUN pip install -e .
 
 EXPOSE 8000

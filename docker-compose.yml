@@ -33,4 +33,3 @@ services:
 secrets:
   raton-config.json:
     file: dev/secrets/raton-config.json
-

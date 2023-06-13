@@ -7,6 +7,10 @@ async def get_api_ping(request):
     return PlainTextResponse(".")
 
 
+async def get_api_info(request):
+    return JSONResponse({"server": "up"})
+
+
 async def homepage(request):
     return JSONResponse({"hello": "world"})
 
@@ -16,5 +20,6 @@ app = Starlette(
     routes=[
         Route("/", homepage),
         Route("/api/ping", get_api_ping),
+        Route("/api/info", get_api_info),
     ],
 )

@@ -9,7 +9,7 @@ init_server() {
 }
 
 down_server() {
-	docker compose down -d
+	docker compose down
 }
 
 get_wheels() {
